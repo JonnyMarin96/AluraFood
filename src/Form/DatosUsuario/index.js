@@ -6,17 +6,13 @@ import { TextField, Button, Box } from "@mui/material";
 const DatosUsuario = () => {
 
   const [email, setEmail] = useState({
-    email: { 
       value: 'email@email.com',
       valid: true
-    }
   })
 
   const [password, setPassword] = useState({
-    password: {
       value: 'asd',
       valid: true
-    }
   })
   
 
@@ -57,7 +53,7 @@ const DatosUsuario = () => {
         error={false}
         helperText={false && "Ingresa un correo electrónico válido"}
         value={email.value}
-        onChange={(e) => setEmail( {email:{value: e.target.value}} )}
+        onChange={(e) => setEmail({value: e.target.value})}
       />
       <TextField
         label="Contraseña"
@@ -66,7 +62,7 @@ const DatosUsuario = () => {
         margin="dense"
         type="password"
         value={password.value}
-        onChange={(e) => setPassword( {password:{value: e.target.value}} )}
+        onChange={(e) => setPassword( { value: e.target.value, valid: true } )}
       />
       <Button variant="contained" type="submit">
         Siguiente
