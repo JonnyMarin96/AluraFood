@@ -22,8 +22,10 @@ const Form = () => {
       </LogoSpace>
       <FormSpace>
         <DatosUsuario />
+        {/*
         <DatosPersonales />
         <DatosEntrega />
+        */}
       </FormSpace>
     </Box>
   );
