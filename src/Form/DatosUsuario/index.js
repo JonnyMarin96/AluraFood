@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Box } from "@mui/material";
-
+import { validarPassword, validarEmail } from "./validaciones ";
 
 
 const DatosUsuario = () => {
@@ -42,7 +42,7 @@ const DatosUsuario = () => {
         justifyContent: "center",
         flexDirection: "column",
       }}
-      onSubmit={ (e) => e.preventDefault }
+      onSubmit={ (e) => e.preventDefault}
     >
       <TextField
         label="Correo electrónico"
@@ -53,16 +53,24 @@ const DatosUsuario = () => {
         error={false}
         helperText={false && "Ingresa un correo electrónico válido"}
         value={email.value}
-        onChange={(e) => setEmail({value: e.target.value})}
+        onChange={(e) =>{
+          const email = e.target.value
+          const valido = validarEmail(email)
+          setEmail({value: email, valid: valido})
+        }}
       />
       <TextField
-        label="Contraseña"
+        label="Contraseña" 
         variant="outlined"
         fullWidth
         margin="dense"
         type="password"
         value={password.value}
-        onChange={(e) => setPassword( { value: e.target.value, valid: true } )}
+        onChange={(e) =>{
+          const password = e.target.value
+          const valido = validarPassword(password)           
+          setPassword({value: password, valid: valido})
+        }}
       />
       <Button variant="contained" type="submit">
         Siguiente
