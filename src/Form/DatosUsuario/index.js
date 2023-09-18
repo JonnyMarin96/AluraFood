@@ -7,12 +7,12 @@ const DatosUsuario = () => {
 
   const [email, setEmail] = useState({
       value: 'email@email.com',
-      valid: true
+      valid: null
   })
 
   const [password, setPassword] = useState({
       value: 'asd',
-      valid: true
+      valid: null
   })
   
 
@@ -42,7 +42,16 @@ const DatosUsuario = () => {
         justifyContent: "center",
         flexDirection: "column",
       }}
-      onSubmit={ (e) => e.preventDefault}
+      onSubmit={(e) => {
+          e.preventDefault()
+          if(email.valid === true  && password.valid === true){
+            console.log("Siguiente formulario")
+          } else {
+            console.log("No avanza")
+          }
+        
+        }
+      }
     >
       <TextField
         label="Correo electrónico"
@@ -50,13 +59,12 @@ const DatosUsuario = () => {
         fullWidth
         margin="dense"
         type="email"
-        error={false}
-        helperText={false && "Ingresa un correo electrónico válido"}
+        error={email.valid === false}
+        helperText={email.valid === false && "Ingresa un correo electrónico válido"}
         value={email.value}
         onChange={(e) =>{
           const email = e.target.value
-          const valido = validarEmail(email)
-          setEmail({value: email, valid: valido})
+          setEmail({value: email, valid: validarEmail(email)})
         }}
       />
       <TextField
@@ -65,11 +73,12 @@ const DatosUsuario = () => {
         fullWidth
         margin="dense"
         type="password"
+        error={password.valid === false}
+        helperText={password.valid === false && "Contraseña invalida"}
         value={password.value}
         onChange={(e) =>{
-          const password = e.target.value
-          const valido = validarPassword(password)           
-          setPassword({value: password, valid: valido})
+          const password = e.target.value           
+          setPassword({value: password, valid: validarPassword(password)})
         }}
       />
       <Button variant="contained" type="submit">
