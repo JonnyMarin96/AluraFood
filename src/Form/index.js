@@ -10,26 +10,12 @@ import Stepper from "../Stepper";
 const Form = () => {
   const [ step, setStep ] = useState(0);
 
-  const selectStep = () => {
-    switch (step){
 
-      case 0: 
-        return <DatosUsuario/>;
-        break;
-
-      case 1: 
-        return <DatosPersonales/>;
-        break;
-
-      case 2: 
-        return <DatosEntrega/>;
-        break;
-
-      default: 
-        return <Complete/>;
-        break;
-    }
-
+  const steps = {
+    0: <DatosUsuario/>,
+    1: <DatosPersonales/>,
+    2: <DatosEntrega/>,
+    3: <Complete/>
   }
 
   return (
@@ -45,7 +31,8 @@ const Form = () => {
         <Typography variant="h3">AluraFood</Typography>
       </LogoSpace>
       <FormSpace>
-        { selectStep() }
+        { step < 3 && <Stepper step={step}/> }  
+        { steps[step] }
       </FormSpace>
     </Box>
   );
