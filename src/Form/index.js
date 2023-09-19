@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { LogoSpace, MainSpace, FormSpace, Img } from "./styles";
 import DatosUsuario from "./DatosUsuario";
@@ -8,6 +8,30 @@ import Complete from "./Complete";
 import Stepper from "../Stepper";
 
 const Form = () => {
+  const [ step, setStep ] = useState(0);
+
+  const selectStep = () => {
+    switch (step){
+
+      case 0: 
+        return <DatosUsuario/>;
+        break;
+
+      case 1: 
+        return <DatosPersonales/>;
+        break;
+
+      case 2: 
+        return <DatosEntrega/>;
+        break;
+
+      default: 
+        return <Complete/>;
+        break;
+    }
+
+  }
+
   return (
     <Box
       sx={{
@@ -21,11 +45,7 @@ const Form = () => {
         <Typography variant="h3">AluraFood</Typography>
       </LogoSpace>
       <FormSpace>
-        <DatosUsuario />
-        {/*
-        <DatosPersonales />
-        <DatosEntrega />
-        */}
+        { selectStep() }
       </FormSpace>
     </Box>
   );

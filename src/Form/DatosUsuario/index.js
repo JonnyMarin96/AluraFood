@@ -7,12 +7,12 @@ const DatosUsuario = () => {
 
   const [email, setEmail] = useState({
       value: 'email@email.com',
-      valid: null
+      valid: true
   })
 
   const [password, setPassword] = useState({
       value: 'asd',
-      valid: null
+      valid: true
   })
   
 
