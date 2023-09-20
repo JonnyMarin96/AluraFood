@@ -32,6 +32,8 @@ const DatosPersonales = () => {
           setNombre({ value, valid })
           console.log(value, valid)
         }}
+        error={nombre.valid === false}
+        helperText={nombre.valid === false && "Se permiten entre 2 y 30 caracteres"}
       />
       <TextField
         label="Apellidos"
@@ -42,9 +44,11 @@ const DatosPersonales = () => {
         value={apellido.value}
         onChange={(input) => {
           const value = input.target.value
-          const valid = validarApellido(apellido)
+          const valid = validarApellido(value)
           setApellido({ value, valid })
         }}
+        error={apellido.valid === false}
+        helperText={apellido.valid === false && "Se permiten entre 2 y 50 caracteres"}
       />
       <TextField
         label="Número telefónico"
@@ -56,9 +60,11 @@ const DatosPersonales = () => {
         value={telefono.value}
         onChange={(input) => {
           const value = input.target.value
-          const valid = validarTelefono(telefono)
+          const valid = validarTelefono(value)
           setTelefono({ value, valid })
         }}
+        error={telefono.valid === false}
+        helperText={telefono.valid === false && "Se permiten entre 8 y 14 digitos"}
       />
       <Button variant="contained" type="submit">
         Siguiente

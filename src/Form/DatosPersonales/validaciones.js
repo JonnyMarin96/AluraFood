@@ -5,7 +5,7 @@ export const validarNombre = (nombre) => {
 
 export const validarApellido = (apellido) => {
     const length = apellido.length
-    return (length > 1 && length < 50) ? true : false
+    return (length > 1 && length < 51) ? true : false
 }
 
 export const validarTelefono = (telefono) => {
